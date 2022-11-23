@@ -1,7 +1,7 @@
 ## Initial Steps
 
 - Clone repo
-- Create python3 -m venv venv
+- python3 -m venv venv - create virtual env
 - Activate (source env/bin/activate) virtual env
 - Install requeriment (pip): pip install -r requirements.txt
 
