@@ -18,6 +18,11 @@ class Redirect (models.Model):
         ordering = ['key']
 
 def signal_update(sender, instance, **kwars):
-    cache.set(instance.key,instance) if instance.active else cache.delete(instance.key)    
+    actives = Redirect.objects.filter(active=True)
+    actives_dictionary = {}
+    for ac in actives:
+        actives_dictionary[ac.key] = ac
+    cache.set_many(actives_dictionary)
+    if not instance.active : cache.delete(instance.key)    
 
 post_save.connect(signal_update, sender = Redirect)
